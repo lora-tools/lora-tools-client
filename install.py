@@ -83,7 +83,7 @@ def create_kohya_ss_start_script():
     content = """#!/bin/bash
 cd kohya_ss
 source venv/bin/activate
-python lora_gui.py --listen 0.0.0.0 --server_port 4204 --headless
+./gui.sh --listen 0.0.0.0 --server_port 4204 --headless
 """
     script_path = os.path.join(SCRIPTS_DIR, "kohya_ss.sh")
     with open(script_path, "w") as f:
