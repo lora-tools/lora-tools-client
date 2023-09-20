@@ -1,0 +1,21 @@
+# Python artifacts
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated launch script
+launch.py
+
+# Generated shell scripts
+scripts/
+
+# Logs
+*.log
+
+# repositories
+stable-diffusion-webui/
+kohya_ss/
+api/
