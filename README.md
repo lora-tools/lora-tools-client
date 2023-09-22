@@ -3,16 +3,16 @@
 
 ## Setup Instructions
 
-### Server Setup
-
-1. Create a server at [lora.tools](https://lora.tools/servers?s=createnew)
-
 ### Ngrok Setup
 
 1. Sign up at [ngrok](https://dashboard.ngrok.com/signup)
 2. Get your [free ngrok static domain](https://dashboard.ngrok.com/cloud-edge/domains)
 3. [Install ngrok](https://ngrok.com/download) locally
-4. Copy/Paste your ngrok domain URL into [lora.tools](https://lora.tools/servers?s=createnew)
+
+### Server Setup
+
+1. Create a server at [lora.tools](https://lora.tools/servers?s=createnew)
+2. Copy/Paste your ngrok domain URL into the URL field
 
 ### lora-tools-client Installation
 
