@@ -1,1 +1,1 @@
-# lysergic-client-installer
+# lora-tools-client

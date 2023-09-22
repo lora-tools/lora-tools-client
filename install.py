@@ -28,8 +28,8 @@ def clone_repositories():
     subprocess.run(["git", "clone", "https://github.com/bmaltais/kohya_ss.git", "kohya_ss"])
     subprocess.run(["git", "-C", "kohya_ss", "checkout", "397bf51a8cd36104e52055358e4ffd066c5858df"])
     
-    # Clone the lysergicai client api
-    subprocess.run(["git", "clone", "https://github.com/lysergicai/lysergic-client.git", "api"])
+    # Clone the lora.tools client api
+    subprocess.run(["git", "clone", "https://github.com/lora-tools/lora-tools.git", "api"])
 
 def create_env_file(SDAPIUSERNAME, SDAPIPASSWORD, NGROK_AUTH_TOKEN, NGROK_DOMAIN, SERVERID):
     env_path = os.path.join("api", ".env")
@@ -119,12 +119,12 @@ def modify_env_file():
         f.write(f"BASE_PATH={base_dir}\n")
         f.write("KOHYA_URL=http://0.0.0.0:4204/\n")
         f.write("SDAPIURL=http://0.0.0.0:7869\n")
-        f.write("PROXY_FETCH_URL=https://lysergicai.com/api/1.1/wf/proxy_url\n")
-        f.write("TRAINING_COMPLETE_URL=https://lysergicai.com/api/1.1/wf/training_complete\n")
-        f.write("SERVER_PING_URL=https://lysergicai.com/api/1.1/wf/ping-sdwebui\n")
+        f.write("PROXY_FETCH_URL=https://lora.tools/api/1.1/wf/proxy_url\n")
+        f.write("TRAINING_COMPLETE_URL=https://lora.tools/api/1.1/wf/training_complete\n")
+        f.write("SERVER_PING_URL=https://lora.tools/api/1.1/wf/ping-sdwebui\n")
 
-# Create the lysergic_ai.sh script
-def create_lysergic_ai_script():
+# Create the lora_tools.sh script
+def create_lora_tools_script():
     ensure_scripts_dir()
     content = """#!/bin/bash
 cd api
@@ -135,7 +135,7 @@ RANDOM_PORT=$((8301 + RANDOM % 201))
 ngrok http $RANDOM_PORT --authtoken $NGROK_AUTH_TOKEN --domain $NGROK_DOMAIN &
 uvicorn main:app --host 0.0.0.0 --port $RANDOM_PORT --reload
 """
-    script_path = os.path.join(SCRIPTS_DIR, "lysergic_ai.sh")
+    script_path = os.path.join(SCRIPTS_DIR, "lora_tools.sh")
     with open(script_path, "w") as f:
         f.write(content)
     os.chmod(script_path, 0o755)
@@ -151,18 +151,18 @@ import os
 
 def start_scripts():
     root = tk.Tk()
-    root.title("LysergicAI Launcher")
+    root.title("Lora.tools Launcher")
 
     processes = {
         "kohya_ss": None,
         "sd_webui": None,
-        "lysergic_ai": None
+        "lora_tools": None
     }
 
     commands = {
         "kohya_ss": ["./kohya_ss.sh"],
         "sd_webui": ["./sd_webui.sh"],
-        "lysergic_ai": ["./lysergic_ai.sh"]
+        "lora_tools": ["./lora_tools.sh"]
     }
 
     def start_process(script):
@@ -261,7 +261,7 @@ if __name__ == "__main__":
     # Modify the paths in the content to be relative to the scripts directory
     content = content.replace("./kohya_ss.sh", f"./{SCRIPTS_DIR}/kohya_ss.sh")
     content = content.replace("./sd_webui.sh", f"./{SCRIPTS_DIR}/sd_webui.sh")
-    content = content.replace("./lysergic_ai.sh", f"./{SCRIPTS_DIR}/lysergic_ai.sh")
+    content = content.replace("./lora_tools.sh", f"./{SCRIPTS_DIR}/lora_tools.sh")
 
     with open("launch.py", "w") as f:
         f.write(content)
@@ -270,7 +270,7 @@ if __name__ == "__main__":
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("LysergicAI Installer")
+        self.root.title("Lora.tools Installer")
 
         # Set the GUI dimensions
         self.root.geometry('800x600')
@@ -305,10 +305,10 @@ class App:
     def display_instructions(self):
         # Display the instructions using a Text widget for the clickable link
         self.instruction_text = tk.Text(self.main_frame, height=3, wrap=tk.WORD, bg=self.root.cget("background"), relief=tk.FLAT)
-        self.instruction_text.insert(tk.END, "Create your LysergicAI server and get installation instructions at ")
-        self.instruction_text.insert(tk.END, "LysergicAI.com", "link")
+        self.instruction_text.insert(tk.END, "Create your Lora.tools server and get installation instructions at ")
+        self.instruction_text.insert(tk.END, "lora.tools", "link")
         self.instruction_text.tag_configure("link", foreground="blue", underline=True)
-        self.instruction_text.tag_bind("link", "<Button-1>", lambda e: webbrowser.open("https://lysergicai.com/servers?s=createnew"))
+        self.instruction_text.tag_bind("link", "<Button-1>", lambda e: webbrowser.open("https://lora.tools/servers?s=createnew"))
         self.instruction_text.configure(state=tk.DISABLED)  # Make it read-only
         self.instruction_text.pack(pady=20)
 
@@ -319,7 +319,7 @@ class App:
         #     print("Repositories missing.")
 
         # Check for the scripts
-        scripts_exist = all(os.path.isfile(os.path.join(SCRIPTS_DIR, script)) for script in ["sd_webui.sh", "kohya_ss.sh", "lysergic_ai.sh"])
+        scripts_exist = all(os.path.isfile(os.path.join(SCRIPTS_DIR, script)) for script in ["sd_webui.sh", "kohya_ss.sh", "lora_tools.sh"])
         # if not scripts_exist:
         #     print("Scripts missing.")
         
@@ -409,7 +409,7 @@ class App:
         self.submit_button.pack(pady=20)
 
     def show_completion_message(self):
-        ttk.Label(self.main_frame, text="✅ LysergicAI installation is complete").pack(pady=20)
+        ttk.Label(self.main_frame, text="✅ Lora.tools installation is complete").pack(pady=20)
         
         start_server_btn = ttk.Button(self.main_frame, text="Launch", command=self.start_server)
         start_server_btn.pack(pady=20)
@@ -453,8 +453,8 @@ class App:
         # Step 7: Modify the .env file
         modify_env_file()
 
-        # Step 8: Create the lysergic_ai.sh script
-        create_lysergic_ai_script()
+        # Step 8: Create the lora_tools.sh script
+        create_lora_tools_script()
 
         # Step 9: Generate the launch.py file
         create_startup_script()
