@@ -13,6 +13,7 @@
 
 1. Create a server at [lora.tools](https://lora.tools/servers?s=createnew)
 2. Copy/Paste your ngrok domain URL into the URL field
+3. Click 'Next'
 
 ### lora-tools-client Installation
 
