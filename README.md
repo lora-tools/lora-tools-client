@@ -9,7 +9,7 @@ This script is an installer GUI that automatically configures your computer to i
 ## Server requirements
 
 - NVIDIA GPU
-- [CUDA 11.8] (https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux)
+- [CUDA 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux)
 - SSD with 30GB free
 
 ## Setup Instructions
