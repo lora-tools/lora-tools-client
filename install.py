@@ -51,11 +51,12 @@ def download_models():
     # Clone adetailer repository to a temporary location
     subprocess.run(["git", "clone", "https://github.com/Bing-su/adetailer.git", "adetailer_tmp"])
     
-    # Move the contents of adetailer_tmp to stable-diffusion-webui/extensions
-    os.makedirs("stable-diffusion-webui/extensions", exist_ok=True)
+    # Move the contents of adetailer_tmp to stable-diffusion-webui/extensions/adetailer
+    adetailer_dest_path = "stable-diffusion-webui/extensions/adetailer"
+    os.makedirs(adetailer_dest_path, exist_ok=True)
     for item in os.listdir("adetailer_tmp"):
         src_path = os.path.join("adetailer_tmp", item)
-        dest_path = os.path.join("stable-diffusion-webui/extensions", item)
+        dest_path = os.path.join(adetailer_dest_path, item)
         if os.path.exists(dest_path):
             if os.path.isdir(dest_path):
                 shutil.rmtree(dest_path)
@@ -65,6 +66,7 @@ def download_models():
     
     # Remove the temporary directory
     shutil.rmtree("adetailer_tmp")
+
 
 def create_sd_webui_start_script(SDAPIUSERNAME, SDAPIPASSWORD):
     ensure_scripts_dir()
