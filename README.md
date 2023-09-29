@@ -57,13 +57,14 @@ This script is an installer GUI that automatically configures your computer to i
 
 ## Tested on
 
-- Linux (Ubuntu 22.0.4.1)
+- Linux (Ubuntu 22.0.4.1), macOS Ventura, Windows 10
 - 3090 Ti (24 GB VRAM)
 - 48 GB RAM
 
 ## Notes
 
 - Use any SDXL checkpoint by adding it to your 'lora-tools-client/stable-diffusion-webui/models/Stable-diffusion/XL' directory
+- Windows users will need to manually confirm a few GPU settings at the end of the installation process within Windows PowerShell
 
 ## Roadmap
 
@@ -71,6 +72,8 @@ This script is an installer GUI that automatically configures your computer to i
 - ~~Image templates~~
 - ~~Duplicate models (basic versioning)~~
 - ~~Fork models (pro versioning)~~
+- ~~Windows support~~
+- Style mode (LoRA training)
 - Wiki
 - Improved error handling
 - Prompt builder
