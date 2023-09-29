@@ -73,8 +73,8 @@ This script is an installer GUI that automatically configures your computer to i
 - ~~Duplicate models (basic versioning)~~
 - ~~Fork models (pro versioning)~~
 - ~~Windows support~~
-- Style mode (LoRA training)
-- Wiki
+- ~~Style mode (LoRA training)~~
+- ~~Face detailer option~~
 - Improved error handling
 - Prompt builder
 - Image generator styles
